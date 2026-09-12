@@ -12,24 +12,24 @@ import { errorHandler } from './middlewares/error.middleware.js'
 const app = express()
 
 const allowedOrigins = [
-    process.env.FRONTEND_URL,
-    process.env.FRONTEND_PRODUCTION_URL
+  process.env.FRONTEND_URL,
+  process.env.FRONTEND_PRODUCTION_URL
 ].filter(Boolean)
 
 app.use(
-    cors({
-        origin: (origin, callback) => {
-            if (!origin || allowedOrigins.includes(origin)) {
-                callback(null, true)
-                return
-            }
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true)
+        return
+      }
 
-            const error = new Error('Origen no permitido por CORS')
-            error.statusCode = 403
+      const error = new Error('Origen no permitido por CORS')
+      error.statusCode = 403
 
-            callback(error)
-        }
-    })
+      callback(error)
+    }
+  })
 )
 
 app.use(express.json())
