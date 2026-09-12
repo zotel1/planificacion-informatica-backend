@@ -17,6 +17,7 @@ const allowedOrigins = [
 ].filter(Boolean)
 
 app.use(
+  // Actualiza la configuración de CORS para permitir solicitudes desde los orígenes especificados
   cors({
     origin: (origin, callback) => {
       if (!origin || allowedOrigins.includes(origin)) {
